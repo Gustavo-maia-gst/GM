@@ -1,2 +1,2 @@
 # GM
-E-Commerce desenvolvido em Django, usando a arquitetura MVT e realizando a comunicação com o Fron-End a partir de APIs RESTful
+E-Commerce desenvolvido em Django, usando a arquitetura MVT e realizando a comunicação com o Fron-end a partir de APIs RESTful.
