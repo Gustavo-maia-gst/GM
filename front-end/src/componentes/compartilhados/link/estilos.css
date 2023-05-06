@@ -1,0 +1,29 @@
+.link {
+   font-size: 26px;
+   font-weight: 800;
+   color: black;
+   text-decoration: none;
+   position: relative;
+}
+
+.link::after {
+   content: " ";
+   background-color: black;
+   width: 0%;
+   opacity: 0;
+   height: 4px;
+   position: absolute;
+   bottom: -4px;
+   left: 0;
+}
+
+.link:hover::after {
+   animation: animar 1s ease-in-out forwards;
+}
+
+@keyframes animar {
+   to {
+      width: 100%;
+      opacity: 1;
+   }
+}
