@@ -5,7 +5,6 @@
    text-decoration: none;
    position: relative;
 }
-
 .link::after {
    content: " ";
    background-color: black;
@@ -17,8 +16,51 @@
    left: 0;
 }
 
+
+.link-azul {
+   color: blue;
+}
+.link-azul::after {
+   content: " ";
+   background-color: blue;
+   width: 0%;
+   opacity: 0;
+   height: 4px;
+   position: absolute;
+   bottom: -4px;
+   left: 0;
+}
+
+.link-vermelho {
+   color: red;
+}
+.link-vermelho::after {
+   content: " ";
+   background-color: red;
+   width: 0%;
+   opacity: 0;
+   height: 4px;
+   position: absolute;
+   bottom: -4px;
+   left: 0;
+}
+
+.link-cinza {
+   color: grey;
+}
+.link-cinza::after {
+   content: " ";
+   background-color: grey;
+   width: 0%;
+   opacity: 0;
+   height: 4px;
+   position: absolute;
+   bottom: -4px;
+   left: 0;
+}
+
 .link:hover::after {
-   animation: animar 1s ease-in-out forwards;
+   animation: animar 0.75s ease-in-out forwards;
 }
 
 @keyframes animar {

@@ -1,11 +1,10 @@
 import React from 'react';
-import Input from './componentes/compartilhados/input';
-import Link from './componentes/compartilhados/link'
+import Botao from './componentes/compartilhados/botao'
 
 function App() {
   return(
     <div>
-      <Link texto="Link-Debug"/>
+      <Botao/>
     </div>
   )
 }
