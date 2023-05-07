@@ -2,13 +2,13 @@ import { Fragment } from "react"
 import './estilos.css'
 
 const Input = (props) => {
-   let divClasses = `input-div input-div-${props.cor} ${props.tamanho}`
+   let divClasses = `input-div ${props.tamanho} input-div-${props.cor}`
    return (
       <Fragment>
          <div className={divClasses}>
             <input 
             className="input" 
-            type={props.type} 
+            type={props.tipo} 
             placeholder={props.placeholder}
             id={props.id}
             ></input>

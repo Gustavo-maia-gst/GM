@@ -1,16 +1,22 @@
 .input {
-   border: 1px solid rgb(100, 100, 100);
+   border: 0;
+   padding: 0;
+   padding-left: 2px;
+   border-radius: 5px;
    height: 30px;
-   font-size: 20px;
+   background-color: whitesmoke;
+   font-size: 18px;
    width: 100%;
 }
 
 .input:focus {
-   border: 1px solid black;
+   border: 1px 0px solid black;
    outline: 0;
 }
 
 .input-div {
+   display: block;
+   border-top: 2px solid rgb(100, 100, 100);
    position: relative;
    width: 40%;
 }
@@ -49,25 +55,25 @@
    left: 50%;
 }
 
-.l-100 {
+.input-l-100 {
    width: 100%;
 }
 
-.l-75 {
+.input-l-75 {
    width: 75%;
 }
 
-.l-50 {
+.input-l-50 {
    width: 50%;
 }
 
-.l-25 {
+.input-l-25 {
    width: 25%;
 }
 
 @keyframes animacaoinput {
    to {
-      width: 101%;
+      width: 100%;
       left: 0;
    }
 }

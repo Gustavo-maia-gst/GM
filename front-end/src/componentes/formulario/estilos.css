@@ -1,0 +1,18 @@
+.label {
+   font-size: 20px;
+   margin: 5px;
+}
+
+form {
+   margin: 5% 20%;
+   padding: 5%;
+   border-radius: 15px;
+   position: relative;
+   background-color: white;
+}
+
+.div-botao {
+   position: absolute;
+   margin: 2%;
+   right: 25%;
+}
