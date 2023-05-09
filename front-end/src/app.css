@@ -1,0 +1,13 @@
+section {
+   position: absolute;
+   top: 35%;
+   width: 100%;
+   margin-left: 2.5%;
+}
+
+.grid-perfumes {
+   display: grid;
+   grid-template-columns: 1fr 1fr 1fr 1fr;
+   row-gap: 50px;
+}
+

@@ -6,7 +6,19 @@ import Navegacao from './componentes/navegacao'
 const App = () => {
   return(
     <Fragment>
-      <Perfumee/>
+      <Navegacao/>
+      <section>
+        <div className='grid-perfumes'>
+          <Perfume/>
+          <Perfume/>
+          <Perfume/>
+          <Perfume/>
+          <Perfume/>
+          <Perfume/>
+          <Perfume/>
+          <Perfume/>
+        </div>
+      </section>
     </Fragment>
   )
 }
