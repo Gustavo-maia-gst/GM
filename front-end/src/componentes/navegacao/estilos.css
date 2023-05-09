@@ -1,0 +1,93 @@
+@import url('https://fonts.googleapis.com/css2?family=Bruno+Ace+SC&display=swap');
+@import url('https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css');
+
+header {
+   background-color: #111;
+   height: 100px;
+   width: 100%;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+   top: 0;
+   left: 0;
+   right: 0;
+   border-bottom: 1px solid #788;
+ }
+
+ input-div {
+   margin-top: 50px;
+   display: block;
+ }
+ 
+ .nav-container {
+   background-color: white;
+   border-radius: 75px 75px 0 0;
+   display: flex;
+   justify-content: space-between;
+   align-items: center;
+   width: 100%;
+   height: 99%;
+   position: relative;
+ }
+
+ .buscando {
+  display: flex;
+  justify-content: center;
+ }
+
+ .buscando button {
+  background-color: rgb(230, 230, 230);
+  width: 35px;
+  border: 0;
+  margin-left: 20px;
+  border-radius: 0 50% 50% 0;
+ }
+
+ .buscando button:hover {
+  background-color: rgb(230, 230, 230);
+  cursor: pointer;
+ }
+ 
+ .titulo {
+   margin-left: 10%;
+   font-size: 28px;
+   font-weight: bold;
+   font-family: 'Bruno Ace SC', cursive;
+ }
+ 
+ nav ul {
+   margin: 0;
+   padding: 0;
+   list-style: none;
+   display: flex;
+ }
+ 
+ nav li {
+   margin-right: 35px;
+ }
+ 
+ nav a {
+   text-decoration: none;
+   color: #333;
+   font-weight: bold;
+ }
+
+.imagem-usuario {
+   width: 35px;
+}
+
+.nav-secundario {
+  display: flex;
+  position: absolute;
+  width: 100%;
+  bottom: -55px;
+  justify-content: center;
+  padding: 15px;
+  border-bottom: 1px solid #788;
+}
+
+.nav-secundario ul {
+  width: 90%;
+  display: flex;
+  justify-content: space-evenly;
+}

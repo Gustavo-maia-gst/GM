@@ -1,0 +1,18 @@
+.card-perfume {
+   display: flex;
+   width: 20%;
+   height: 300px;
+   flex-wrap: wrap;
+   background-color: burlywood;
+   justify-content: center;
+}
+
+.titulo-perfume {
+   font-size: 18px;
+   font-weight: 600;
+   justify-self: center;
+}
+
+.imagem-perfume {
+   width: 60%;
+}

@@ -1,18 +1,19 @@
 .link {
-   font-size: 26px;
+   font-size: 20px;
    font-weight: 800;
-   color: black;
+   color: rgb(60, 60, 60);
    text-decoration: none;
    position: relative;
 }
+
 .link::after {
    content: " ";
-   background-color: black;
+   background-color: rgb(60, 60, 60);
    width: 0%;
    opacity: 0;
-   height: 4px;
+   height: 3px;
    position: absolute;
-   bottom: -4px;
+   bottom: -3px;
    left: 0;
 }
 
@@ -20,47 +21,66 @@
 .link-azul {
    color: blue;
 }
+
 .link-azul::after {
    content: " ";
    background-color: blue;
    width: 0%;
    opacity: 0;
-   height: 4px;
+   height: 3px;
    position: absolute;
-   bottom: -4px;
+   bottom: -3px;
    left: 0;
 }
 
 .link-vermelho {
    color: red;
 }
+
 .link-vermelho::after {
    content: " ";
    background-color: red;
    width: 0%;
    opacity: 0;
-   height: 4px;
+   height: 3px;
    position: absolute;
-   bottom: -4px;
+   bottom: -3px;
    left: 0;
 }
 
 .link-cinza {
    color: grey;
 }
+
 .link-cinza::after {
    content: " ";
    background-color: grey;
    width: 0%;
    opacity: 0;
-   height: 4px;
+   height: 3px;
    position: absolute;
-   bottom: -4px;
+   bottom: -3px;
    left: 0;
 }
 
 .link:hover::after {
    animation: animar 0.75s ease-in-out forwards;
+}
+
+.link-leve {
+   font-weight: 300;
+   font-size: 18px;
+}
+
+.link-leve::after {
+   content: " ";
+   background-color: grey;
+   width: 0%;
+   opacity: 0;
+   height: 2px;
+   position: absolute;
+   bottom: -3px;
+   left: 0;
 }
 
 @keyframes animar {
