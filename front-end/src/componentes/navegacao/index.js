@@ -3,11 +3,46 @@ import Input from '../compartilhados/input'
 import './estilos.css'
 
 const Navegacao = (props) => {
+   const setPerfumes = props.setter
+   const inputPesquisa = document.querySelector('#pesquisa')
+   let perfumes
+
+   async function filtrarCategoria(evento) {
+      let genero = evento.target.text
+
+      await fetch('http://localhost:8000/api/perfumes/')
+      .then(response => response.json())
+      .then(data => {
+         perfumes = data
+      })
+
+      let tempPerfumes = perfumes.filter(perfume => {
+         if (perfume.genero.nome == genero) {
+            return true
+         }
+      })
+      
+      setPerfumes(tempPerfumes)
+   }
+
+   async function pesquisar(evento) {
+      evento.preventDefault()
+
+      await fetch(`http://localhost:8000/api/perfumes/?nome=${inputPesquisa.value}`)
+      .then(response => response.json())
+      .then(data => {
+         perfumes = data
+         console.log(perfumes)
+      })
+
+      setPerfumes(perfumes)
+   }
+
    return (
       <header>
          <div className="nav-container">
             <h1 className="titulo">GM_Perfumes</h1>
-            <form className='buscando'>
+            <form className='buscando' onSubmit={pesquisar}>
                <Input placeholder='O que você está buscando...'
                       tamanho="input-l-100" 
                       id="pesquisa"
@@ -27,10 +62,10 @@ const Navegacao = (props) => {
             </nav>
             <nav className='nav-secundario'>
                <ul>
-                  <li><Link link="" texto="Nacionais" estilo="leve"/></li>
-                  <li><Link link="" texto="Contratipos" estilo="leve"/></li>
-                  <li><Link link="" texto="Importados" estilo="leve"/></li>
-                  <li><Link link="" texto="Nicho" estilo="leve"/></li>
+                  <li onClick={filtrarCategoria}><Link texto="Nacional" estilo="leve"/></li>
+                  <li onClick={filtrarCategoria}><Link texto="Contratipo" estilo="leve"/></li>
+                  <li onClick={filtrarCategoria}><Link texto="Importado" estilo="leve"/></li>
+                  <li onClick={filtrarCategoria}><Link texto="Nicho" estilo="leve"/></li>
                </ul>
          </nav>
          </div>

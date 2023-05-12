@@ -4,12 +4,12 @@ import './estilos.css'
 const CardPerfume = (props) => {
    return (
       <a className="card-perfume" href="">
-         <img src="https://www.giraofertas.com.br/wp-content/uploads/2018/05/Aventus-Creed-Eau-de-Parfum-03.jpg"
+         <img src={props.imagem}
          className="imagem-perfume"/>
-         <p className='genero-perfume'>Nicho</p>
-         <p className="titulo-perfume">Creed Aventhus</p>
-         <p className='descricao-perfume'>- Clássico de Creed, Aventhus traz em sua composição notas frutadas, esfumaçadas e amadeiradas</p>
-         <p className="preco-perfume">R$1231,00</p>
+         <p className='genero-perfume'>{props.genero}</p>
+         <p className="titulo-perfume">{props.nome}</p>
+         <p className='descricao-perfume'>{props.briefing}</p>
+         <p className="preco-perfume">R${props.preco}</p>
       </a>
    )
 }

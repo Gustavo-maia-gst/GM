@@ -13,14 +13,10 @@ class PerfumesAPI(APIView):
     def get(self, request) -> Response:
         perfumes = Perfume.objects.all()
 
-        # Filtra possíveis parâmetros vindos do método GET.
-        genero = request.query_params.get('genero')
+        # Filtra possível parâmetro de nome vindos do método GET.
         nome = request.query_params.get('nome')
-        print(request.query_params)
-        print(nome)
-        if genero:
-            perfumes = perfumes.filter(genero=genero)
         if nome:
+            nome = nome.strip()
             perfumes = perfumes.filter(nome__icontains=nome)
 
         serializer = PerfumeSerializer(perfumes, many=True)

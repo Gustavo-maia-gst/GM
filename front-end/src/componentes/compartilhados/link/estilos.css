@@ -6,6 +6,10 @@
    position: relative;
 }
 
+.link:hover {
+   cursor: pointer;
+}
+
 .link::after {
    content: " ";
    background-color: rgb(60, 60, 60);

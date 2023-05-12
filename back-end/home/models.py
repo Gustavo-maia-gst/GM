@@ -12,7 +12,7 @@ class Genero(models.Model):
 class Perfume(models.Model):
    nome = models.CharField(max_length=75)
    genero = models.ForeignKey(Genero, on_delete=models.CASCADE)
-   briefing = models.CharField(max_length=50)
+   briefing = models.CharField(max_length=100)
    descricao = models.TextField()
    preco = models.DecimalField(max_digits=8, decimal_places=2)
    imagem = models.TextField()

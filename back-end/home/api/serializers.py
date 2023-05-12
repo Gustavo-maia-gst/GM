@@ -1,18 +1,19 @@
+from dataclasses import fields
 from home import models
 from rest_framework.serializers import ModelSerializer
 
-# Serializer padrão usando o ModelSerializer do django-rest-framework:
+# Serializers usando o ModelSerializer padrão do django-rest-framework:
+
+class GeneroSerializaer(ModelSerializer):
+     class Meta:
+          model = models.Genero
+          fields = ('nome', )
+
 class PerfumeSerializer(ModelSerializer):
+     genero = GeneroSerializaer()
+
      class Meta:
           model = models.Perfume
-          fields = (
-               'id',
-               'nome',
-               'briefing',
-               'descricao',
-               'genero',
-               'preco',
-               'imagem',
-          )
+          fields = '__all__'
 
 
