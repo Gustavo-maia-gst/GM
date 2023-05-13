@@ -1,38 +1,84 @@
 import React, { Fragment, useState, useEffect } from 'react';
 import './app.css'
-import Perfume from './componentes/perfume'
-import Navegacao from './componentes/navegacao'
+import SpinBox from './componentes/spinbox'
+import Header from './componentes/header'
+import BotaoCarrinho from './componentes/botao_carrinho'
 
 const App = () => {
-  const [perfumes, setPerfumes] = useState([])
+  
+  const retornarId = () => {
+    let path = window.location.pathname
+    if (path) {
+      return path.match(/\d+/g)
+    }
+    return null
+  }
+
+  const formatarNotas = (notasArray) => {
+    let notasFormatadas
+    notasArray.map((notaObjeto, index) => {
+      if (index == 0) {
+        notasFormatadas = `${notaObjeto.nome}`
+      } 
+      else if (index < notasArray.length - 1) {
+        notasFormatadas += `, ${notaObjeto.nome}`
+      } 
+      else {
+        notasFormatadas += ` e ${notaObjeto.nome};`
+      }
+    })
+    return notasFormatadas
+  }
+  
+  const [perfume, setPerfume] = useState([])
+  const [notasSaida, setnotasSaida] = useState([])
+  const [notasCorpo, setnotasCorpo] = useState([])
+  const [notasBase, setnotasBase] = useState([])
+
+  const id = retornarId()
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/perfumes/')
+    fetch(`/api/perfume/${id}`)
       .then(response => response.json())
       .then(data => {
-        setPerfumes(data)
-      });
+        setPerfume(data)
+        setnotasSaida(formatarNotas(data.notas_saida))
+        setnotasCorpo(formatarNotas(data.notas_corpo))
+        setnotasBase(formatarNotas(data.notas_base))
+      })
+      .catch(erro => console.log(erro))
   }, []);
 
   return(
     <Fragment>
-      <Navegacao setter={setPerfumes}/>
+      <Header/>
       <section>
-        <div className='grid-perfumes'>
-          {perfumes.map((perfume, index) => {
-            return(
-              <div key={index}>
-                <Perfume
-                imagem={perfume.imagem}
-                genero={perfume.genero.nome}
-                nome={perfume.nome}
-                briefing={perfume.briefing}
-                preco={perfume.preco}
-                />
-              </div>
-            )
-          })}
-        </div>
+        <table>
+          <tbody>
+            <tr>
+              <td>
+                <img src={perfume.imagem} className='imagem-venda'></img>
+              </td>
+              <td className='container-venda'>
+                <h2 className='nome-perfume-venda'>{perfume.nome}</h2>
+                <p className='preco-perfume-venda'>R${perfume.preco}</p>
+                <p className='briefing-perfume-venda'>{perfume.briefing}</p>
+                <div className='div-botoes-venda'>
+                  <form method='POST'>
+                    <SpinBox/>
+                    <BotaoCarrinho/>
+                  </form>
+                </div>
+                <p className='descricao-perfume'>- {perfume.descricao}</p>
+                <div>
+                  <p className='notas-perfume'><b>Notas de saída: </b>{notasSaida}</p>
+                  <p className='notas-perfume'><b>Notas de corpo: </b>{notasCorpo}</p>
+                  <p className='notas-perfume'><b>Notas de base: </b>{notasBase}</p>
+                </div>
+              </td>
+            </tr>
+          </tbody>
+        </table>
       </section>
     </Fragment>
   )

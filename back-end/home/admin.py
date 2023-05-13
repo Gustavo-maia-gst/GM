@@ -7,5 +7,9 @@ class PerfumeAdmin(admin.ModelAdmin):
 class GeneroAdmin(admin.ModelAdmin):
     list_display = ('id', 'nome')
 
+class NotaAdmin(admin.ModelAdmin):
+    list_display = ('id', 'nome')
+
 admin.site.register(models.Perfume, PerfumeAdmin)
 admin.site.register(models.Genero, GeneroAdmin)
+admin.site.register(models.Nota, NotaAdmin)

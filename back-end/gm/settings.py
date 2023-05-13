@@ -26,19 +26,24 @@ INSTALLED_APPS = [
     'rest_framework',
 
     'home',
+    'venda',
+    'usuarios'
 ]
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
-    'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
     'corsheaders.middleware.CorsMiddleware',
     'django.middleware.common.CommonMiddleware',
 ]
+
+SESSION_ENGINE = 'django.contrib.sessions.backends.signed_cookies'
+SESSION_EXPIRE_AT_BROWSER_CLOSE = True
+
 
 ROOT_URLCONF = 'gm.urls'
 
@@ -111,7 +116,8 @@ USE_TZ = True
 
 STATIC_URL = 'static/'
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'templates/static')
+    os.path.join(BASE_DIR, 'templates/home/static'),
+    os.path.join(BASE_DIR, 'templates/venda/static'),
 ]
 
 MEDIA_URL = 'media/'

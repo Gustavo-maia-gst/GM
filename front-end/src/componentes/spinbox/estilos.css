@@ -1,0 +1,36 @@
+.div-spinbox * {
+   border: 0;
+   margin: 6px;
+}
+
+.div-spinbox {
+   border: 1px solid rgba(100, 100, 100, 0.65);
+   display: inline;
+   width: 100px;
+   height: 40px;
+   border-radius: 10px;
+   padding: 10px;
+}
+
+.input-spinbox {
+   width: 20px;
+   text-align: center;
+   height: 25px;
+   font-size: 20px;
+}
+
+.input-spinbox:focus {
+   border: 0;
+   outline: 0;
+}
+
+.botao-spinbox {
+   background-color: white;
+   border-radius: 200px;
+   font-size: 25px;
+}
+
+.botao-spinbox:hover {
+   background-color: #eee;
+   cursor: pointer;
+}

@@ -1,0 +1,23 @@
+.botao-carrinho {
+   color: white;
+   background-color: rgba(10, 10, 10, 0.9);
+   border: 0;
+   border-radius: 40px;
+   font-size: 18px;
+   padding: 12px;
+}
+
+.botao-carrinho:hover {
+   cursor: pointer;
+   animation: animarbotaocarrinho 0.4s forwards alternate ease-in-out;
+   
+}
+
+@keyframes animarbotaocarrinho {
+   from {
+      background-color: rgba(10, 10, 10, 0.9);
+   }
+   to {
+      background-color: rgba(10, 10, 10, 0.75);
+   }
+}

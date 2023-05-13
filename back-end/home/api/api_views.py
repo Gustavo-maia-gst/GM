@@ -1,5 +1,6 @@
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from django.http import HttpRequest
 from .serializers import PerfumeSerializer
 from home.models import Perfume
 from rest_framework import status
@@ -10,7 +11,7 @@ Optei por herdar minhas APIs a partir de APIView, sei que o mesmo poderia ser fe
 
 class PerfumesAPI(APIView):
     """API de listagem e inserção dos perfumes do projeto GM Perfumes, suportando os métodos GET e POST, sendo o método POST disponível apenas para usuários autenticados"""
-    def get(self, request) -> Response:
+    def get(self, request: HttpRequest) -> Response:
         perfumes = Perfume.objects.all()
 
         # Filtra possível parâmetro de nome vindos do método GET.
@@ -22,7 +23,7 @@ class PerfumesAPI(APIView):
         serializer = PerfumeSerializer(perfumes, many=True)
         return Response(serializer.data, status.HTTP_200_OK)
     
-    def post(self, request) -> Response:
+    def post(self, request: HttpRequest) -> Response:
         serializer = PerfumeSerializer(data=request.data)
 
         # Verifica se os dados são válidos e os salvam no banco, caso contrário lança uma excessão de código 400.
@@ -33,13 +34,13 @@ class PerfumesAPI(APIView):
 
 class PerfumeAPI(APIView):
     """API de visualização, alteração e remoção de perfumes do projeto GM Perfumes, suportando os métodos GET, PUT e DELETE, sendo estes últimos disponíveis apenas para usuários autenticados"""
-    def get(self, request, id) -> Response:
+    def get(self, request: HttpRequest, id) -> Response:
         # Retorna o perfume solicitado na request.
         perfume = Perfume.objects.get(pk=id)
         serializer = PerfumeSerializer(perfume)
         return Response(serializer.data, status.HTTP_200_OK)
     
-    def put(self, request, id) -> Response:
+    def put(self, request: HttpRequest, id) -> Response:
         # Realiza a alteração no perfume com o id 
         perfume = Perfume.objects.get(pk=id)
         serializer = PerfumeSerializer(perfume, data=request.data)
@@ -47,7 +48,7 @@ class PerfumeAPI(APIView):
         serializer.save()
         return Response(serializer.data, status.HTTP_200_OK)
 
-    def delete(self, request, id) -> Response:
+    def delete(self, request: HttpRequest, id) -> Response:
         perfume = Perfume.objects.get(pk=id)
         perfume.delete()
         return Response(None, status.HTTP_204_NO_CONTENT)
