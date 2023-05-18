@@ -1,8 +1,12 @@
 import Link from '../compartilhados/link'
 import Input from '../compartilhados/input'
+import PerfumeCarrinho from '../perfume_carrinho'
+import React, { Fragment, useState, useEffect } from 'react';
 import './estilos.css'
 
 const Navegacao = (props) => {
+   const [carrinho, setCarrinho] = useState([])
+   const [total, setTotal] = useState([])
    const setPerfumes = props.setter
    const inputPesquisa = document.querySelector('#pesquisa')
    let perfumes
@@ -10,7 +14,7 @@ const Navegacao = (props) => {
    async function filtrarCategoria(evento) {
       let genero = evento.target.text
 
-      await fetch('http://localhost:8000/api/perfumes/')
+      await fetch('/api/perfumes/')
       .then(response => response.json())
       .then(data => {
          perfumes = data
@@ -28,7 +32,7 @@ const Navegacao = (props) => {
    async function pesquisar(evento) {
       evento.preventDefault()
 
-      await fetch(`http://localhost:8000/api/perfumes/?nome=${inputPesquisa.value}`)
+      await fetch(`/api/perfumes/?nome=${inputPesquisa.value}`)
       .then(response => response.json())
       .then(data => {
          perfumes = data
@@ -36,6 +40,23 @@ const Navegacao = (props) => {
       })
 
       setPerfumes(perfumes)
+   }
+   
+   const abrirCarrinho = () => {
+      fetch('/api/carrinho')
+         .then(response => response.json())
+         .then(data => {
+            setCarrinho(data)
+         })
+      fetch('/api/carrinho/total')
+         .then(response => response.json())
+         .then(data => {
+            setTotal(data)
+         })
+         document.getElementById("modal").style.display = "block"
+      }
+   const fecharCarrinho = () => {
+      document.getElementById("modal").style.display = "none"
    }
 
    return (
@@ -48,16 +69,28 @@ const Navegacao = (props) => {
                       id="pesquisa"
                       nome="query"
                       estilo="leve"/>
-               <button><i className="fa fa-search"></i></button>
+               <button><i className="fas fa-search"></i></button>
             </form>
             <nav>
                <ul>
-                  <img src='https://thumbs.dreamstime.com/b/%C3%ADcone-do-vetor-da-casa-ilustra%C3%A7%C3%A3o-home-preto-e-branco-%C3%ADcone-linear-da-casa-do-esbo%C3%A7o-para-aplica%C3%A7%C3%B5es-m%C3%B3veis-93075065.jpg' className='imagem-icone'/>
-                  <li><Link link="" texto="Home"/></li>
-                  <img src='https://media.istockphoto.com/id/1444083145/pt/vetorial/question-mark-outline-style-icon.jpg?s=1024x1024&w=is&k=20&c=4T_aDUtMu6Ks-kFmoycSUDIYcW2hBEwv5K1zd9eyItE=' className='imagem-icone'/>
-                  <li><Link link="" texto="Sobre"/></li>
-                  <img src='https://img.freepik.com/vetores-premium/icone-de-avatar-masculino-pessoa-desconhecida-ou-anonima-icone-de-perfil-de-avatar-padrao-usuario-de-midia-social-homem-de-negocios-silhueta-de-perfil-de-homem-isolada-no-fundo-branco-ilustracao-vetorial_735449-120.jpg?w=740' className='imagem-icone'/>
-                  <li><Link link="" texto="Perfil"/></li>
+                  <li>
+                     <i className='fas fa-home'></i>
+                     <Link link="http://localhost:8000" texto="Home"/>
+                  </li>
+                  <li>
+                     <a onClick={abrirCarrinho}>
+                        <i className='fas fa-shopping-cart'></i>
+                        <Link texto="Carrinho"/>
+                     </a>
+                  </li>
+                  <li>
+                     <i className='fas fa-question-circle'></i>
+                     <Link link="http://localhost:8000" texto="Sobre"/>
+                  </li>
+                  <li>
+                     <i className='fas fa-user-circle'></i>
+                     <Link link="http://localhost:8000" texto="Perfil"/>
+                  </li>
                </ul>
             </nav>
             <nav className='nav-secundario'>
@@ -69,8 +102,31 @@ const Navegacao = (props) => {
                </ul>
          </nav>
          </div>
+         <div className='modal' id='modal'>
+            <span className="fechar" onClick={fecharCarrinho}>x</span>
+            <div className='modal-conteudo'>
+               <h3 className='titulo-carrinho'><i className='fas fa-shopping-cart'></i> Carrinho de compras</h3>
+               <div className='perfumes-carrinho'>
+                  {
+                     carrinho.map(perfume => {
+                        return (
+                              <div>
+                                 <PerfumeCarrinho
+                                    imagem={perfume.imagem}
+                                    nome={perfume.nome}
+                                    preco={perfume.preco}
+                                    quantidade={perfume.quantidade}
+                                    id={perfume.id}
+                                    setterCarrinho={setCarrinho}/>
+                              </div>
+                        )
+                     })
+                  }
+               </div>
+               <h4 className='subtotal-carrinho'>Subtotal: {total}</h4>
+            </div>
+         </div>
       </header>
-
    )
 }
 

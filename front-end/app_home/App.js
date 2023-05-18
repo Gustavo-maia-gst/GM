@@ -7,7 +7,7 @@ const App = () => {
   const [perfumes, setPerfumes] = useState([])
 
   useEffect(() => {
-    fetch('http://localhost:8000/api/perfumes/')
+    fetch('/api/perfumes/')
       .then(response => response.json())
       .then(data => {
         setPerfumes(data)
@@ -23,6 +23,7 @@ const App = () => {
             return(
               <div key={index}>
                 <Perfume
+                id={perfume.id}
                 imagem={perfume.imagem}
                 genero={perfume.genero.nome}
                 nome={perfume.nome}

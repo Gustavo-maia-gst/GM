@@ -1,0 +1,31 @@
+.perfume-carrinho {
+   border: 1px solid #aaa;
+   border-radius: 10px;
+   display: flex;
+   justify-content: space-around;
+   width: 80%;
+   font-size: 14px;
+}
+
+.botao-remover-carrinho {
+   background-color: white;
+   border: 0;
+}
+
+.detalhes-perfume-carrinho * {
+   margin: 10px;
+}
+
+.imagem-perfume-carrinho {
+   width: 100px;
+   height: 100px;
+}
+
+.fa-trash {
+   margin-top: 40px;
+}
+
+.fa-trash:hover {
+   cursor: pointer;
+   color: #a00;
+}

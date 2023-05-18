@@ -57,3 +57,9 @@ header {
 .imagem-icone {
    width: 30px;
 }
+
+.fas {
+  color: rgba(10, 10, 10, 0.85);
+  font-size: 20px;
+  padding-right: 5px;
+}

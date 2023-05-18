@@ -37,7 +37,7 @@ const SpinBox = (props) => {
    const subtrair = () => {
       let input = document.querySelector('.input-spinbox')
       let valor = parseInt(input.value)
-      if (valor >= 1) {
+      if (valor > 1) {
          valor -= 1
       }
       input.value = valor

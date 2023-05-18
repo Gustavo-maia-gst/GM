@@ -1,0 +1,54 @@
+table {
+   width: 90%;
+   margin-left: 5%;
+   margin-right: 5%;
+ }
+ 
+ .imagem-venda {
+   width: 650px;
+ }
+ 
+ .container-venda {
+   display: flex;
+   align-items: center;
+   justify-content: center;
+   column-gap: 0;
+   flex-direction: column;
+   padding-top: 5%;
+   margin-left: 35px;
+   color: #313131;
+ }
+ 
+ .nome-perfume-venda {
+   font-size: 35px;
+   margin-top: 10px;
+ }
+ 
+ .preco-perfume-venda {
+   font-size: 28px;
+   font-weight: 700;
+ }
+
+ .briefing-perfume-venda {
+  font-size: 20px;
+  margin: 20px;
+  width: 100%;
+ }
+
+ button {
+  display: inline;
+ }
+
+ .div-botoes-venda {
+  padding: 25px;
+ }
+
+ .div-botoes-venda * {
+  margin: 10px;
+ }
+
+ .notas-perfume {
+  font-size: 14px;
+  margin-top: 30px;
+  color: black;
+ }

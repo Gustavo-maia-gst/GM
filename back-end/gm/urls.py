@@ -8,4 +8,5 @@ urlpatterns = [
     path('', include('home.urls')),
     path('venda/', include('venda.urls')),
     path('api-auth/', include('rest_framework.urls')),
+    path('api/', include('gm.api.api_urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
