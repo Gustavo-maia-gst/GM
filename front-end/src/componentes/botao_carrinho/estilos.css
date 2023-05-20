@@ -7,6 +7,10 @@
    padding: 12px;
 }
 
+.botao-carrinho * {
+   color: white;
+}
+
 .botao-carrinho:hover {
    cursor: pointer;
    animation: animarbotaocarrinho 0.4s forwards alternate ease-in-out;

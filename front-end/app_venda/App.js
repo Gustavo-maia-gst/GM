@@ -9,7 +9,7 @@ const App = () => {
   const retornarId = () => {
     let path = window.location.pathname
     if (path) {
-      return path.match(/\d+/g)
+      return path.match(/\d+/g)[0]
     }
     return null
   }
@@ -29,6 +29,7 @@ const App = () => {
     })
     return notasFormatadas
   }
+
   
   const [perfume, setPerfume] = useState([])
   const [notasSaida, setnotasSaida] = useState([])
@@ -38,7 +39,7 @@ const App = () => {
   const id = retornarId()
 
   useEffect(() => {
-    fetch(`/api/perfume/${id}`)
+    fetch(`/api/perfume/${id}/`)
       .then(response => response.json())
       .then(data => {
         setPerfume(data)
@@ -47,7 +48,25 @@ const App = () => {
         setnotasBase(formatarNotas(data.notas_base))
       })
       .catch(erro => console.log(erro))
-  }, []);
+    }, []);
+
+    const adicionarCarrinho = async () => {
+      const quantidade = document.getElementById('spinbox').value
+      await fetch('/api/carrinho/', {
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        method: "POST",
+        body: JSON.stringify({id_perfume: id, quantidade: quantidade})
+      })
+        .then(response => {
+          if (response.ok) {
+            window.alert("Produto adicionado com sucesso")
+          } else {
+            window.alert("Erro ao adicionar o produto")
+          }
+        })
+    }
 
   return(
     <Fragment>
@@ -64,9 +83,9 @@ const App = () => {
                 <p className='preco-perfume-venda'>R${perfume.preco}</p>
                 <p className='briefing-perfume-venda'>{perfume.briefing}</p>
                 <div className='div-botoes-venda'>
-                  <form method='POST'>
+                  <form>
                     <SpinBox/>
-                    <BotaoCarrinho/>
+                    <BotaoCarrinho adicionarCarrinho={adicionarCarrinho}/>
                   </form>
                 </div>
                 <p className='descricao-perfume'>- {perfume.descricao}</p>

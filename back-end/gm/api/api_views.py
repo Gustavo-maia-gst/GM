@@ -98,6 +98,7 @@ class CarrinhoAPI(APIView):
         request.session['carrinho'].append(perfume_carrinho)
 
     def get(self, request: HttpRequest) -> Response:
+        
         # Retorna todos os objetos do carrinho
         try:
             carrinho_json = carrinho_serializer(request)
@@ -110,8 +111,8 @@ class CarrinhoAPI(APIView):
         
     def post(self, request: HttpRequest) -> Response:
         try: 
-            id_perfume = int(request.data.get('id_perfume'))
             quantidade = int(request.data.get('quantidade'))
+            id_perfume = int(request.data.get('id_perfume'))
 
             self.inicializar_carrinho(request)
 
@@ -127,18 +128,23 @@ class CarrinhoProdutoAPI(APIView):
     permission_classes = [AllowAny]
     @staticmethod
     def remover_perfume(request: HttpRequest, id_perfume: int) -> Response:
-        perfume = Perfume.objects.get(pk=id_perfume)
-        carrinho = request.session['carrinho']
-        total = request.session['total']
-        # Remove o produto com o id específicado do carrinho, retorna True se excluiu e False se não encontrou
-        for index, produto in enumerate(request.session['carrinho']):
-            if produto['id_perfume'] == id_perfume:
-                carrinho.pop(index)
-                total -= (float(perfume.preco) * int(produto['quantidade']))
-                request.session['carrinho'] = carrinho
-                return True
-            
-        return False
+        try:
+            perfume = Perfume.objects.get(pk=id_perfume)
+            carrinho = request.session['carrinho']
+            total = request.session['total']
+            # Remove o produto com o id específicado do carrinho, retorna True se excluiu e False se não encontrou
+            for index, produto in enumerate(request.session['carrinho']):
+                if produto['id_perfume'] == id_perfume:
+                    carrinho.pop(index)
+                    total -= (float(perfume.preco) * int(produto['quantidade']))
+                    request.session['total'] = total
+                    request.session['carrinho'] = carrinho
+                    return True
+                
+            return False
+        
+        except KeyError:
+            return False
     
     def get(self, request: HttpRequest, id_perfume: int) -> Response:
         try:
@@ -167,4 +173,5 @@ class CarrinhoTotalAPI(APIView):
             total_json = total_serializer(request)
             return Response(total_json, status.HTTP_200_OK)
         except KeyError:
-            return Response(0.0, status.HTTP_200_OK)
+            total_json = total_serializer(request, zero=True)
+            return Response(total_json, status.HTTP_200_OK)

@@ -63,3 +63,43 @@ header {
   font-size: 20px;
   padding-right: 5px;
 }
+
+.modal {
+  display: none;
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 30%;
+  height: 100%;
+  background-color: white;
+  border: 3px solid black;
+  z-index: 9999;
+}
+
+.fechar {
+  color: #a00;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  margin-right: 10px;
+}
+
+.fechar:hover{
+  color: red;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-conteudo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.titulo-carrinho {
+  font-size: 24px;
+}
+
+.subtotal-carrinho {
+  align-self: flex-end;
+}

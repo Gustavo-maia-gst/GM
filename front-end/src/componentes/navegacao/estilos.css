@@ -101,7 +101,8 @@ header {
   width: 30%;
   height: 100%;
   background-color: white;
-  border: 3px solid black
+  border: 3px solid black;
+  z-index: 9999;
 }
 
 .fechar {

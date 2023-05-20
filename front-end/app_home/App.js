@@ -1,7 +1,7 @@
 import React, { Fragment, useState, useEffect } from 'react';
+import Perfume from '../src/componentes/perfume'
 import './app.css'
-import Perfume from './componentes/perfume'
-import Navegacao from './componentes/navegacao'
+import Navegacao from '../src/componentes/navegacao'
 
 const App = () => {
   const [perfumes, setPerfumes] = useState([])
@@ -16,7 +16,7 @@ const App = () => {
 
   return(
     <Fragment>
-      <Navegacao setter={setPerfumes}/>
+      <Navegacao getter={perfumes} setter={setPerfumes}/>
       <section>
         <div className='grid-perfumes'>
           {perfumes.map((perfume, index) => {

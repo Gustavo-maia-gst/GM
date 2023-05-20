@@ -3,8 +3,8 @@
    border-radius: 10px;
    display: flex;
    justify-content: space-around;
-   width: 80%;
    font-size: 14px;
+   width: 95%;
 }
 
 .botao-remover-carrinho {

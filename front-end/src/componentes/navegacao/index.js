@@ -7,9 +7,9 @@ import './estilos.css'
 const Navegacao = (props) => {
    const [carrinho, setCarrinho] = useState([])
    const [total, setTotal] = useState([])
+   const perfumes = props.getter
    const setPerfumes = props.setter
    const inputPesquisa = document.querySelector('#pesquisa')
-   let perfumes
 
    async function filtrarCategoria(evento) {
       let genero = evento.target.text
@@ -32,28 +32,27 @@ const Navegacao = (props) => {
    async function pesquisar(evento) {
       evento.preventDefault()
 
-      await fetch(`/api/perfumes/?nome=${inputPesquisa.value}`)
+      await fetch(`/api/perfumes/?nome=${inputPesquisa.value}/`)
       .then(response => response.json())
       .then(data => {
          perfumes = data
-         console.log(perfumes)
       })
 
       setPerfumes(perfumes)
    }
    
-   const abrirCarrinho = () => {
-      fetch('/api/carrinho')
+   const abrirCarrinho = async () => {
+      document.getElementById("modal").style.display = "block"
+      await fetch('/api/carrinho/')
          .then(response => response.json())
          .then(data => {
             setCarrinho(data)
          })
-      fetch('/api/carrinho/total')
+      await fetch('/api/carrinho/total/') 
          .then(response => response.json())
          .then(data => {
             setTotal(data)
          })
-         document.getElementById("modal").style.display = "block"
       }
    const fecharCarrinho = () => {
       document.getElementById("modal").style.display = "none"
@@ -74,8 +73,10 @@ const Navegacao = (props) => {
             <nav>
                <ul>
                   <li>
-                     <i className='fas fa-home'></i>
-                     <Link link="http://localhost:8000" texto="Home"/>
+                     <a href=''>
+                        <i className='fas fa-home'></i>
+                        <Link texto="Home"/>
+                     </a>
                   </li>
                   <li>
                      <a onClick={abrirCarrinho}>
@@ -84,12 +85,16 @@ const Navegacao = (props) => {
                      </a>
                   </li>
                   <li>
-                     <i className='fas fa-question-circle'></i>
-                     <Link link="http://localhost:8000" texto="Sobre"/>
+                     <a href=''>
+                        <i className='fas fa-question-circle'></i>
+                        <Link texto="Sobre"/>
+                     </a>
                   </li>
                   <li>
-                     <i className='fas fa-user-circle'></i>
-                     <Link link="http://localhost:8000" texto="Perfil"/>
+                     <a href=''>
+                        <i className='fas fa-user-circle'></i>
+                        <Link link="http://localhost:8000" texto="Perfil"/>
+                     </a>
                   </li>
                </ul>
             </nav>
@@ -108,22 +113,20 @@ const Navegacao = (props) => {
                <h3 className='titulo-carrinho'><i className='fas fa-shopping-cart'></i> Carrinho de compras</h3>
                <div className='perfumes-carrinho'>
                   {
-                     carrinho.map(perfume => {
-                        return (
-                              <div>
-                                 <PerfumeCarrinho
-                                    imagem={perfume.imagem}
-                                    nome={perfume.nome}
-                                    preco={perfume.preco}
-                                    quantidade={perfume.quantidade}
-                                    id={perfume.id}
-                                    setterCarrinho={setCarrinho}/>
-                              </div>
-                        )
-                     })
+                  carrinho.length > 0 ?
+                     carrinho.map(perfume => (
+                        <PerfumeCarrinho
+                        id={perfume.id_perfume}
+                        imagem={perfume.imagem}
+                        nome={perfume.nome}
+                        preco={perfume.preco}
+                        quantidade={perfume.quantidade}
+                        />
+                        ))
+                     : <p>O Carrinho está vazio</p>
                   }
                </div>
-               <h4 className='subtotal-carrinho'>Subtotal: {total}</h4>
+               <h4 className='subtotal-carrinho'>Subtotal: R${total}</h4>
             </div>
          </div>
       </header>
